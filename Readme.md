@@ -1,3 +1,10 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [BarTemplateSelector.cs](./CS/DXSample/Common/BarTemplateSelector.cs) (VB: [BarTemplateSelector.vb](./VB/DXSample/Common/BarTemplateSelector.vb))
+* [MainViewModel.cs](./CS/DXSample/ViewModels/MainViewModel.cs) (VB: [MainViewModel.vb](./VB/DXSample/ViewModels/MainViewModel.vb))
+* **[MainView.xaml](./CS/DXSample/Views/MainView.xaml) (VB: [MainView.xaml](./VB/DXSample/Views/MainView.xaml))**
+<!-- default file list end -->
 # How to build a Bar UI from a ViewModel collection in an MVVM application
 
 

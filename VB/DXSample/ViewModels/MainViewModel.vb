@@ -1,61 +1,49 @@
-﻿Imports DevExpress.Mvvm
-Imports DevExpress.Mvvm.DataAnnotations
-Imports DevExpress.Mvvm.POCO
-Imports DXSample.Common
+Imports DevExpress.Mvvm
 Imports System
 Imports System.Collections.ObjectModel
 
 Namespace DXSample.ViewModels
-    <POCOViewModel> _
+
     Public Class MainViewModel
+        Inherits ViewModelBase
+
         Public Sub New()
             Initalization()
         End Sub
 
-        #Region "Initalization"
+        Public Property Bars As ObservableCollection(Of BarViewModel)
+
+        Private ReadOnly Property MessageBoxService As IMessageBoxService
+            Get
+                Return GetService(Of IMessageBoxService)()
+            End Get
+        End Property
+
         Private Sub Initalization()
             Bars = New ObservableCollection(Of BarViewModel)()
             'Bars
-            Dim mainMenuBar = ViewModelSource.Create(Function() New BarViewModel() With {.BarType = BarType.MainMenu, .Caption = "Main Menu"})
-            Dim statusBar = ViewModelSource.Create(Function() New BarViewModel() With {.BarType = BarType.StatusBar, .Caption = "Status Bar"})
+            Dim mainMenuBar = New BarViewModel() With {.BarType = BarType.MainMenu, .Caption = "Main Menu"}
+            Dim statusBar = New BarViewModel() With {.BarType = BarType.StatusBar, .Caption = "Status Bar"}
             'Items
-            Dim newItem = ViewModelSource.Create(Function() New ButtonBarItemViewModel(AddressOf NewCommandExecuteFunc) With {.Caption = "New", .LargeGlyph = DXImageHelper.GetDXImage("New_32x32.png"), .SmallGlyph = DXImageHelper.GetDXImage("New_16x16.png")})
-            Dim openItem = ViewModelSource.Create(Function() New ButtonBarItemViewModel(AddressOf OpenCommandExecuteFunc) With {.Caption = "Open", .LargeGlyph = DXImageHelper.GetDXImage("Open_32x32.png"), .SmallGlyph = DXImageHelper.GetDXImage("Open_16x16.png")})
-            Dim helpItem = ViewModelSource.Create(Function() New ButtonBarItemViewModel(AddressOf HelpCommandExecuteFunc) With {.Caption = "Help"})
-            Dim exitItem = ViewModelSource.Create(Function() New ButtonBarItemViewModel(AddressOf ExitCommandExecuteFunc) With {.Caption = "Exit"})
-            Dim fileGroupItem = ViewModelSource.Create(Function() New GroupBarItemViewModel() With {.Caption = "File", .LargeGlyph = DXImageHelper.GetDXImage("File_32x32.png"), .SmallGlyph = DXImageHelper.GetDXImage("File_16x16.png")})
+            Dim newItem = New BarItemViewModel(AddressOf ExecuteCommandFunction, "New", New Uri("pack://application:,,,/Images/New.svg"))
+            Dim openItem = New BarItemViewModel(AddressOf ExecuteCommandFunction, "Open", New Uri("pack://application:,,,/Images/Open.svg"))
+            Dim exitItem = New BarItemViewModel(AddressOf ExecuteCommandFunction, "Exit", New Uri("pack://application:,,,/Images/Exit.svg"))
+            Dim helpItem = New BarItemViewModel(AddressOf ExecuteCommandFunction, "Help")
+            Dim fileGroupItem = New GroupBarItemViewModel("File")
             fileGroupItem.SubItems.Add(newItem)
             fileGroupItem.SubItems.Add(openItem)
-            fileGroupItem.SubItems.Add(ViewModelSource.Create(Function() New BarItemViewModelBase()))
+            fileGroupItem.SubItems.Add(New BarItemViewModelBase())
             fileGroupItem.SubItems.Add(exitItem)
-            Dim statusBarItem = ViewModelSource.Create(Function() New BarItemViewModel() With {.Caption = Date.Now.ToShortDateString()})
-
+            Dim staticBarItem = New StaticBarItemViewModel(Date.Now.ToShortDateString())
             mainMenuBar.Items.Add(fileGroupItem)
             mainMenuBar.Items.Add(helpItem)
-            statusBar.Items.Add(statusBarItem)
+            statusBar.Items.Add(staticBarItem)
             Bars.Add(mainMenuBar)
             Bars.Add(statusBar)
         End Sub
-        #End Region
 
-        Public Sub ExitCommandExecuteFunc()
-            MessageBoxService.ShowMessage("Exit Command executed")
+        Public Sub ExecuteCommandFunction(ByVal parameter As String)
+            MessageBoxService.ShowMessage($"{parameter} Command executed")
         End Sub
-        Public Sub HelpCommandExecuteFunc()
-            MessageBoxService.ShowMessage("Help Command executed")
-        End Sub
-        Public Sub NewCommandExecuteFunc()
-            MessageBoxService.ShowMessage("New Command executed")
-        End Sub
-        Public Sub OpenCommandExecuteFunc()
-            MessageBoxService.ShowMessage("Open Command executed")
-        End Sub
-
-        Public Overridable Property Bars() As ObservableCollection(Of BarViewModel)
-        Public ReadOnly Property MessageBoxService() As IMessageBoxService
-            Get
-                Return Me.GetService(Of IMessageBoxService)()
-            End Get
-        End Property
     End Class
 End Namespace

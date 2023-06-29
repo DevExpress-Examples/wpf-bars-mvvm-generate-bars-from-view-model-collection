@@ -1,8 +1,9 @@
-﻿Imports DevExpress.Mvvm.DataAnnotations
+Imports DevExpress.Mvvm
 
 Namespace DXSample.ViewModels
 
-    <POCOViewModel> _
     Public Class BarItemViewModelBase
+        Inherits ViewModelBase
+
     End Class
 End Namespace

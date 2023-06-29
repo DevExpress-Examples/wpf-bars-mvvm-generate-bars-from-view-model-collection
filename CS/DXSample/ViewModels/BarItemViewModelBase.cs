@@ -1,7 +1,5 @@
-﻿using DevExpress.Mvvm.DataAnnotations;
+﻿using DevExpress.Mvvm;
 
 namespace DXSample.ViewModels {
-
-    [POCOViewModel]
-    public class BarItemViewModelBase { }
+    public class BarItemViewModelBase : ViewModelBase { }
 }

@@ -1,11 +1,78 @@
-<dx:DXWindow x:Class="DXSample.MainWindow"
+<dx:ThemedWindow x:Class="DXSample.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-    xmlns:Views="clr-namespace:DXSample.Views" 
+    xmlns:ViewModels="clr-namespace:DXSample.ViewModels"        
+    xmlns:Common="clr-namespace:DXSample.Common"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     Title="MainWindow" Height="350" Width="525">
+    <dx:ThemedWindow.DataContext>
+        <ViewModels:MainViewModel/>
+    </dx:ThemedWindow.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+    </dxmvvm:Interaction.Behaviors>
+
+    <dx:ThemedWindow.Resources>
+
+        <DataTemplate DataType="{x:Type ViewModels:BarItemViewModel}">
+            <ContentControl>
+                <dxb:BarButtonItem 
+        			Content="{Binding Caption}"
+        			Glyph="{Binding Glyph}"
+        			GlyphAlignment="Top"
+        			BarItemDisplayMode="ContentAndGlyph"
+        			Command="{Binding ExecuteActionCommand}"
+                    CommandParameter="{Binding Caption}"/>
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:GroupBarItemViewModel}">
+            <ContentControl>
+                <dxb:BarSubItem 
+        			Content="{Binding Caption}"
+        			Glyph="{Binding Glyph}"
+        			GlyphAlignment="Left"
+        			BarItemDisplayMode="ContentAndGlyph"
+        			ItemLinksSource="{Binding SubItems}"/>
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:BarItemViewModelBase}">
+            <ContentControl>
+                <dxb:BarItemSeparator />
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type ViewModels:StaticBarItemViewModel}">
+            <ContentControl>
+                <dxb:BarStaticItem Content="{Binding Caption}"/>
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate x:Key="mainMenuTemplate">
+            <ContentControl>
+                <dxb:Bar Caption="{Binding Name}" ItemLinksSource="{Binding Items}" IsMainMenu="True"/>
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate x:Key="statusBarTemplate">
+            <ContentControl>
+                <dxb:Bar Caption="{Binding Name}" ItemLinksSource="{Binding Items}" IsStatusBar="True">
+                    <dxb:Bar.DockInfo>
+                        <dxb:BarDockInfo ContainerType="Bottom"/>
+                    </dxb:Bar.DockInfo>
+                </dxb:Bar>
+            </ContentControl>
+        </DataTemplate>
+
+        <Common:BarTemplateSelector x:Key="BarTemplateSelector"
+             MainMenuTemplate="{StaticResource mainMenuTemplate}"
+             StatusBarTemplate="{StaticResource statusBarTemplate}"/>
+    </dx:ThemedWindow.Resources>
+
     <Grid>
-        <Views:MainView />
+        <dxb:BarManager BarsSource="{Binding Bars}" BarTemplateSelector="{StaticResource BarTemplateSelector}"/>
     </Grid>
-</dx:DXWindow>
+</dx:ThemedWindow>

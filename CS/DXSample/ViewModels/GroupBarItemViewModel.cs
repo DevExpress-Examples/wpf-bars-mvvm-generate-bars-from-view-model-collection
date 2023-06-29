@@ -1,14 +1,11 @@
-﻿using DevExpress.Mvvm.DataAnnotations;
+﻿using System;
 using System.Collections.ObjectModel;
 
 namespace DXSample.ViewModels {
-
-    [POCOViewModel]
-    public class GroupBarItemViewModel : ButtonBarItemViewModel {
-        public GroupBarItemViewModel() : base(null) {
+    public class GroupBarItemViewModel : BarItemViewModel {
+        public GroupBarItemViewModel(string caption = null, Uri glyph = null) : base(null, caption, glyph) {
             SubItems = new ObservableCollection<BarItemViewModelBase>();
         }
-
-        public virtual ObservableCollection<BarItemViewModelBase> SubItems { get; set; }
+        public ObservableCollection<BarItemViewModelBase> SubItems { get; }
     }
 }

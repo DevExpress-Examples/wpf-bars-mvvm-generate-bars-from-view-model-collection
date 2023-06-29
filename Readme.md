@@ -8,7 +8,7 @@
 
 This example demonstrates how to generate bars (main menu and status bar) and bar items ([BarButtonItem](https://docs.devexpress.com/WPF/DevExpress.Xpf.Bars.BarButtonItem), [BarSubItem](https://docs.devexpress.com/WPF/DevExpress.Xpf.Bars.BarSubItem), [BarItemSeparator](https://docs.devexpress.com/WPF/DevExpress.Xpf.Bars.BarItemSeparator), and [BarStaticItem](https://docs.devexpress.com/WPF/DevExpress.Xpf.Bars.BarStaticItem)) from a View Model collection:
 
-![image](https://github.com/DevExpress-Examples/how-to-build-a-bar-ui-from-a-viewmodel-collection-in-an-mvvm-application-t246650/assets/65009440/8ae51fb1-6d85-44f9-8dab-aadb59487ec5)
+![image](https://github.com/DevExpress-Examples/how-to-build-a-bar-ui-from-a-viewmodel-collection-in-an-mvvm-application-t246650/assets/65009440/243f8df0-0d44-40c9-b443-3ba807ee30bd)
 
 Each bar container has **\*Source**, **\*Template**, and **\*TemplateSelector** properties. The **\*Source** property specifies a View Model collection that contains objects used to generate child bar items. **\*Template** and **\*TemplateSelector** properties specify a data template that generates items from the specified collection. Refer to the following help topic for a complete list of properties: [WPF Ribbon, Bars, and Menu: MVVM Support](https://docs.devexpress.com/WPF/10434/controls-and-libraries/ribbon-bars-and-menu/common-concepts/mvvm-support).
 

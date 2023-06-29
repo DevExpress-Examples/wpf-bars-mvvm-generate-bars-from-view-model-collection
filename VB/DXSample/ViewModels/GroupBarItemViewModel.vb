@@ -1,9 +1,9 @@
-﻿Imports DevExpress.Mvvm.DataAnnotations
+Imports DevExpress.Mvvm.DataAnnotations
 Imports System.Collections.ObjectModel
 
 Namespace DXSample.ViewModels
 
-    <POCOViewModel> _
+    <POCOViewModel>
     Public Class GroupBarItemViewModel
         Inherits ButtonBarItemViewModel
 
@@ -12,6 +12,6 @@ Namespace DXSample.ViewModels
             SubItems = New ObservableCollection(Of BarItemViewModelBase)()
         End Sub
 
-        Public Overridable Property SubItems() As ObservableCollection(Of BarItemViewModelBase)
+        Public Overridable Property SubItems As ObservableCollection(Of BarItemViewModelBase)
     End Class
 End Namespace

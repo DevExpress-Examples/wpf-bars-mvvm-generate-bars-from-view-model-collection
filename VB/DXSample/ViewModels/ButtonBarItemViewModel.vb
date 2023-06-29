@@ -1,10 +1,10 @@
-﻿Imports DevExpress.Mvvm.DataAnnotations
+Imports DevExpress.Mvvm.DataAnnotations
 Imports System
 Imports System.Windows.Media
 
 Namespace DXSample.ViewModels
 
-    <POCOViewModel> _
+    <POCOViewModel>
     Public Class ButtonBarItemViewModel
         Inherits BarItemViewModel
 
@@ -15,14 +15,15 @@ Namespace DXSample.ViewModels
             Me.action = action
         End Sub
 
-        <Command> _
+        <Command>
         Public Sub ExecuteAction()
             If action IsNot Nothing Then
                 action()
             End If
         End Sub
 
-        Public Overridable Property LargeGlyph() As ImageSource
-        Public Overridable Property SmallGlyph() As ImageSource
+        Public Overridable Property LargeGlyph As ImageSource
+
+        Public Overridable Property SmallGlyph As ImageSource
     End Class
 End Namespace

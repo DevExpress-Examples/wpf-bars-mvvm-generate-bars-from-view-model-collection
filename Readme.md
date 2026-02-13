@@ -92,7 +92,7 @@ The [BarManager.BarsSource](https://docs.devexpress.com/WPF/DevExpress.Xpf.Bars.
 * [MVVM Application with WPF Bars](https://github.com/DevExpress-Examples/mvvm-application-with-wpf-bars)
 * [WPF Bars - Use ToolBarControl, MainMenuControl, and StatusBarControl Containers](https://github.com/DevExpress-Examples/how-to-create-bars-using-toolbarcontrol-mainmenucontrol-and-statusbarcontrol-t186664)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-bars-mvvm-generate-bars-from-view-model-collection&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-bars-mvvm-generate-bars-from-view-model-collection&~~~was_helpful=no)
 
